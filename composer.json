@@ -1,0 +1,59 @@
+{
+    "name": "coquibot/coqui-toolkit-code-edit",
+    "description": "Surgical file editing toolkit for Coqui — replace, insert, remove, indent, batch operations with undo history",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carmelo Santana"
+        }
+    ],
+    "keywords": [
+        "php-agents",
+        "code-edit",
+        "file-editing",
+        "search-replace",
+        "refactoring",
+        "coqui",
+        "toolkit"
+    ],
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "carmelosantana/php-agents": "^0.7",
+        "pestphp/pest": "^3.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CoquiBot\\Toolkits\\CodeEdit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CoquiBot\\Toolkits\\CodeEdit\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse"
+    },
+    "extra": {
+        "php-agents": {
+            "toolkits": [
+                "CoquiBot\\Toolkits\\CodeEdit\\CodeEditToolkit"
+            ],
+            "description": "Surgical file editing — replace, insert, remove, indent, batch operations with undo history"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
