@@ -50,7 +50,7 @@ final readonly class FileOperations
         $dir = dirname($path);
 
         if (!is_dir($dir)) {
-            throw CodeEditException::directoryNotFound($dir);
+            mkdir($dir, 0755, true);
         }
 
         $tmp = $path . '.tmp-' . bin2hex(random_bytes(6));
@@ -111,7 +111,7 @@ final readonly class FileOperations
         $dir = dirname($path);
 
         if (!is_dir($dir)) {
-            throw CodeEditException::directoryNotFound($dir);
+            mkdir($dir, 0755, true);
         }
 
         $bytes = @file_put_contents($path, $content, FILE_APPEND | LOCK_EX);
