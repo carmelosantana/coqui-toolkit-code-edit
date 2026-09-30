@@ -40,7 +40,12 @@ final readonly class PathResolver
         $dir = dirname($absolute);
         $realDir = realpath($dir);
 
-        if ($realDir === false || !str_starts_with($realDir, $this->normalizedRoot)) {
+        if ($realDir === false) {
+            // Directory doesn't exist yet — only '..' traversal can escape the sandbox
+            if (str_contains($relative, '..')) {
+                throw CodeEditException::pathEscapesSandbox($relativePath);
+            }
+        } elseif (!str_starts_with($realDir, $this->normalizedRoot)) {
             throw CodeEditException::pathEscapesSandbox($relativePath);
         }
 
